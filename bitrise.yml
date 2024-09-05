@@ -9,5 +9,7 @@ workflows:
     - certificate-and-profile-installer: {}
     - xcode-archive:
         inputs:
+        - project_path: "./Ishell/Ishell.xcodeproj"
+        - scheme: "Ishell"
         - export_method: ad-hoc
     - deploy-to-bitrise-io: {}
