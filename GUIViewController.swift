@@ -31,7 +31,15 @@ class ViewController: UIViewController {
         let textField = UITextField()
         textField.backgroundColor = .black
         textField.textColor = .white
+        textField.borderStyle = .roundedRect
         return textField
+    }()
+    
+    private let sendButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Send", for: .normal)
+        button.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     private var commandHistory: [String] = []
@@ -51,11 +59,14 @@ class ViewController: UIViewController {
         disclaimerLabel.frame = CGRect(x: 20, y: nameLabel.frame.maxY + 10, width: view.frame.width - 40, height: 200)
         view.addSubview(disclaimerLabel)
         
-        commandListView.frame = CGRect(x: 20, y: disclaimerLabel.frame.maxY + 20, width: view.frame.width - 40, height: view.frame.height - 200)
+        commandListView.frame = CGRect(x: 20, y: disclaimerLabel.frame.maxY + 20, width: view.frame.width - 40, height: view.frame.height - 300)
         view.addSubview(commandListView)
         
         commandTextField.frame = CGRect(x: 20, y: commandListView.frame.maxY + 10, width: view.frame.width - 140, height: 50)
         view.addSubview(commandTextField)
+        
+        sendButton.frame = CGRect(x: commandTextField.frame.maxX + 10, y: commandTextField.frame.minY, width: 100, height: 50)
+        view.addSubview(sendButton)
         
         commandTextField.addTarget(self, action: #selector(commandTextFieldDidChange), for: .editingChanged)
     }
